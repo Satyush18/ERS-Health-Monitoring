@@ -4,7 +4,7 @@ function Alerts() {
   const [alerts, setAlerts] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/data")
+    fetch("https://ers-health-monitoring.onrender.com/data")
       .then((res) => res.json())
       .then((data) => {
         let generatedAlerts = [];

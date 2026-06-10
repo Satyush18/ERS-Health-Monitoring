@@ -14,7 +14,7 @@ const [data, setData] = useState([]);
 const [error, setError] = useState("");
 
 useEffect(() => {
-fetch("http://127.0.0.1:8000/data")
+fetch("https://ers-health-monitoring.onrender.com/data")
 .then((res) => {
 if (!res.ok) {
 throw new Error("Failed to fetch data");

@@ -4,7 +4,7 @@ function Motors() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/data")
+    fetch("https://ers-health-monitoring.onrender.com/data")
       .then((res) => res.json())
       .then((result) => setData(result))
       .catch((err) => console.log(err));

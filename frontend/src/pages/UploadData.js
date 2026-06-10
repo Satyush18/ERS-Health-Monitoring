@@ -26,13 +26,12 @@ function UploadData() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
+  "https://ers-health-monitoring.onrender.com/data",
+  {
+    method: "POST",
+    body: formData,
+  }
+);
       const result = await response.json();
 
       if (result.status === "success") {
