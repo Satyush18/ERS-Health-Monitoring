@@ -26,7 +26,7 @@ function UploadData() {
 
     try {
       const response = await fetch(
-  "https://ers-health-monitoring.onrender.com/data",
+  "https://ers-health-monitoring.onrender.com/upload",
   {
     method: "POST",
     body: formData,
