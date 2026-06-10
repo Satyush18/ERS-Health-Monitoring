@@ -1,0 +1,16 @@
+Motor,Temperature,Vibration
+Hoist Motor,105,1.2
+Crowd Motor,88,0.7
+Swing Motor,95,1.5
+Travel Motor,60,0.3
+Auxiliary Motor,110,2.5
+Compressor Motor,65,0.4
+Lubrication Motor,72,0.5
+Pump Motor,102,2.8
+Cooling Fan Motor,74,0.4
+Gearbox Motor,78,0.8
+Hydraulic Pump Motor,92,1.6
+Bucket Drive Motor,80,0.7
+Conveyor Motor,69,0.5
+Exciter Motor,85,1.1
+Brake Motor,76,0.6
