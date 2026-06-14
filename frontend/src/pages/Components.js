@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Components() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -235,14 +237,24 @@ function Components() {
               </th>
 
               <th
-                style={{
-                  padding: "15px",
-                  width: "45%",
-                  textAlign: "center",
-                }}
-              >
-                Remarks
-              </th>
+  style={{
+    padding: "15px",
+    width: "30%",
+    textAlign: "center",
+  }}
+>
+  Remarks
+</th>
+
+<th
+  style={{
+    padding: "15px",
+    width: "15%",
+    textAlign: "center",
+  }}
+>
+  Action
+</th>
             </tr>
           </thead>
 
@@ -282,14 +294,42 @@ function Components() {
                   </td>
 
                   <td
-                    style={{
-                      padding: "15px",
-                      textAlign: "center",
-                      color: "#374151",
-                    }}
-                  >
-                    {component.remarks}
-                  </td>
+  style={{
+    padding: "15px",
+    textAlign: "center",
+    color: "#374151",
+  }}
+>
+  {component.remarks}
+</td>
+
+<td
+  style={{
+    padding: "15px",
+    textAlign: "center",
+  }}
+>
+  <button
+    onClick={() =>
+      navigate(
+        `/component/${encodeURIComponent(
+          component.name
+        )}`
+      )
+    }
+    style={{
+      background: "#2563eb",
+      color: "white",
+      border: "none",
+      padding: "8px 14px",
+      borderRadius: "6px",
+      cursor: "pointer",
+      fontWeight: "bold",
+    }}
+  >
+    View Details
+  </button>
+</td>
                 </tr>
               )
             )}

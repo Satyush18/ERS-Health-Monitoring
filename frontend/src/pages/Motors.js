@@ -147,15 +147,7 @@ function Motors() {
       </div>
 
       {/* Footer */}
-      <div
-        style={{
-          textAlign: "center",
-          marginTop: "30px",
-          color: "gray",
-        }}
-      >
-        ERS Monitoring System | IIT KHARAGPUR | 2026
-      </div>
+      
     </div>
   );
 }

@@ -1,6 +1,13 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation
+} from "react-router-dom";
 
-import { 
+import {
   FaUpload,
   FaTachometerAlt,
   FaCog,
@@ -9,24 +16,30 @@ import {
   FaBell
 } from "react-icons/fa";
 
+import Welcome from "./pages/Welcome";
 import UploadData from "./pages/UploadData";
 import Dashboard from "./pages/Dashboard";
 import Motors from "./pages/Motors";
 import Components from "./pages/Components";
 import Analytics from "./pages/Analytics";
 import Alerts from "./pages/Alerts";
+import ComponentDetails from "./pages/ComponentDetails";
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+
+  const isWelcomePage = location.pathname === "/";
+
   return (
-    <Router>
-      <div
-        style={{
-          display: "flex",
-          minHeight: "100vh",
-          background: "#f5f7fb"
-        }}
-      >
-        {/* Sidebar */}
+    <div
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+        background: "#f5f7fb"
+      }}
+    >
+      {/* Sidebar */}
+      {!isWelcomePage && (
         <div
           style={{
             width: "240px",
@@ -53,7 +66,7 @@ function App() {
 
           <p>
             <Link
-              to="/"
+              to="/dashboard"
               style={{
                 color: "white",
                 textDecoration: "none"
@@ -111,43 +124,76 @@ function App() {
             </Link>
           </p>
         </div>
+      )}
 
-        {/* Main Content */}
-        <div
-  style={{
-    flex: 1,
-    padding: "25px",
-    display: "flex",
-    flexDirection: "column",
-    minHeight: "100vh"
-  }}
->
-  <div style={{ flex: 1 }}>
-    <Routes>
-      <Route path="/upload" element={<UploadData />} />
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/motors" element={<Motors />} />
-      <Route path="/components" element={<Components />} />
-      <Route path="/analytics" element={<Analytics />} />
-      <Route path="/alerts" element={<Alerts />} />
-    </Routes>
-  </div>
+      {/* Main Content */}
+      <div
+        style={{
+          flex: 1,
+          padding: isWelcomePage ? "0" : "25px",
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh"
+        }}
+      >
+        {!isWelcomePage && (
+          <div style={{ textAlign: "right", padding: "10px 20px" }}>
+            <button
+              onClick={() => window.location.reload()}
+              style={{
+                background: "#007bff",
+                color: "white",
+                border: "none",
+                padding: "10px 20px",
+                borderRadius: "8px",
+                cursor: "pointer",
+                fontWeight: "bold"
+              }}
+            >
+              🔄 Refresh
+            </button>
+          </div>
+        )}
 
-  {/* Footer */}
-  <footer
-    style={{
-      textAlign: "center",
-      padding: "15px",
-      marginTop: "30px",
-      color: "#6b7280",
-      fontSize: "14px",
-      borderTop: "1px solid #e5e7eb"
-    }}
-  >
-    ERS Health Monitoring System | IIT Kharagpur | 2026
-  </footer>
-</div>
+        <div style={{ flex: 1 }}>
+          <Routes>
+            <Route path="/" element={<Welcome />} />
+            <Route path="/upload" element={<UploadData />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/motors" element={<Motors />} />
+            <Route path="/components" element={<Components />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/alerts" element={<Alerts />} />
+            <Route
+              path="/component/:id"
+              element={<ComponentDetails />}
+            />
+          </Routes>
+        </div>
+
+        {!isWelcomePage && (
+          <footer
+            style={{
+              textAlign: "center",
+              padding: "15px",
+              marginTop: "30px",
+              color: "#6b7280",
+              fontSize: "14px",
+              borderTop: "1px solid #e5e7eb"
+            }}
+          >
+            ERS Health Monitoring System | IIT Kharagpur | 2026
+          </footer>
+        )}
       </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
