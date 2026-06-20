@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import os
@@ -31,28 +31,6 @@ def home():
     return {
         "message": "ERS Health Monitoring API Running"
     }
-
-# -----------------------------
-# UPLOAD CSV
-# -----------------------------
-@app.post("/upload")
-async def upload_csv(file: UploadFile = File(...)):
-    try:
-        df = pd.read_csv(file.file)
-
-        df.to_csv(DATA_FILE, index=False)
-
-        return {
-            "status": "success",
-            "message": "CSV uploaded successfully",
-            "rows": len(df)
-        }
-
-    except Exception as e:
-        return {
-            "status": "error",
-            "message": str(e)
-        }
 
 # -----------------------------
 # GET DATA
