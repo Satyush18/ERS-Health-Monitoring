@@ -8,24 +8,10 @@ function Components() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("https://ers-health-monitoring.onrender.com/data")
-      .then((res) => {
-        if (!res.ok) throw new Error("API failed");
-        return res.json();
-      })
-      .then((result) => {
-        if (result && result.length > 0) {
-          setData(result);
-        } else {
-          throw new Error("Empty");
-        }
-      })
-      .catch(() => {
-        setData(motorData);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+ useEffect(() => {
+  setData(motorData);
+  setLoading(false);
+}, []);
 
   const getMax = (name, field) => {
     const rows = data.filter((item) => {
