@@ -1,39 +1,39 @@
-Motor,Temperature,Vibration
-Crowd Motor,78.5,1.1
-Swing Motor,82.3,1.4
-Hoist Motor,93.6,1.6
-Propel Motor,68.2,0.9
-Crowd Motor 2,104.8,2.3
-Swing Motor 2,88.1,1.6
-Hoist Motor 2,79.4,1.3
-Propel Motor 2,73.9,1.0
-Cooling Pump Motor,85.2,1.7
-Lube Oil Pump Motor,76.4,1.2
-Air Compressor Motor,91.5,1.9
-Conveyor Drive Motor,69.8,0.8
-Exciter Motor,86.7,1.3
-Auxiliary Blower Motor,72.1,1.0
-Transformer (CT),88.0,1.2
-Transformer (CT),92.5,1.4
-Transformer (CT),96.0,1.6
-Transformer (CT),101.5,1.8
-IGBT Module,75.0,1.0
-IGBT Module,80.0,1.2
-IGBT Module,86.0,1.3
-IGBT Module,91.5,1.4
-Power Block,70.0,1.1
-Power Block,74.5,1.5
-Power Block,79.0,1.9
-Power Block,83.5,2.2
-Rectifier Unit,95.0,1.3
-Rectifier Unit,99.0,1.4
-Rectifier Unit,103.0,1.5
-Rectifier Unit,107.0,1.6
-Cooling System,65.0,0.9
-Cooling System,72.0,1.2
-Cooling System,78.5,1.4
-Cooling System,84.0,1.6
-Motor Drive Controller,80.0,1.1
-Motor Drive Controller,86.0,1.3
-Motor Drive Controller,92.0,1.5
-Motor Drive Controller,97.5,1.7
+Motor,Temperature,Vibration,Current
+Crowd Motor,78.5,1.1,45
+Swing Motor,82.3,1.4,52
+Hoist Motor,93.6,1.6,61
+Propel Motor,68.2,0.9,38
+Crowd Motor 2,104.8,2.3,78
+Swing Motor 2,88.1,1.6,57
+Hoist Motor 2,79.4,1.3,48
+Propel Motor 2,73.9,1.0,42
+Cooling Pump Motor,85.2,1.7,54
+Lube Oil Pump Motor,76.4,1.2,44
+Air Compressor Motor,91.5,1.9,63
+Conveyor Drive Motor,69.8,0.8,36
+Exciter Motor,86.7,1.3,55
+Auxiliary Blower Motor,72.1,1.0,40
+Transformer (CT),88.0,1.2,58
+Transformer (CT),92.5,1.4,62
+Transformer (CT),96.0,1.6,66
+Transformer (CT),101.5,1.8,72
+IGBT Module,75.0,1.0,43
+IGBT Module,80.0,1.2,50
+IGBT Module,86.0,1.3,56
+IGBT Module,91.5,1.4,62
+Power Block,70.0,1.1,39
+Power Block,74.5,1.5,46
+Power Block,79.0,1.9,52
+Power Block,83.5,2.2,58
+Rectifier Unit,95.0,1.3,65
+Rectifier Unit,99.0,1.4,69
+Rectifier Unit,103.0,1.5,74
+Rectifier Unit,107.0,1.6,79
+Cooling System,65.0,0.9,33
+Cooling System,72.0,1.2,40
+Cooling System,78.5,1.4,47
+Cooling System,84.0,1.6,53
+Motor Drive Controller,80.0,1.1,50
+Motor Drive Controller,86.0,1.3,56
+Motor Drive Controller,92.0,1.5,63
+Motor Drive Controller,97.5,1.7,69
