@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 
 function Components() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
-   fetch("https://ers-health-monitoring.onrender.com/data")
+    fetch("https://ers-health-monitoring.onrender.com/data")
       .then((res) => res.json())
       .then((result) => setData(result))
       .catch((err) => console.log(err));
@@ -14,94 +15,60 @@ function Components() {
 
   const maxTemp =
     data.length > 0
-      ? Math.max(
-          ...data.map((item) =>
-            Number(item.Temperature)
-          )
-        )
+      ? Math.max(...data.map((item) => Number(item.Temperature)))
       : 0;
 
   const maxVibration =
     data.length > 0
-      ? Math.max(
-          ...data.map((item) =>
-            Number(item.Vibration)
-          )
-        )
+      ? Math.max(...data.map((item) => Number(item.Vibration)))
       : 0;
 
   const components = [
     {
       name: "Transformer (CT)",
-      status:
-        maxTemp > 100 || maxVibration > 2
-          ? "Warning"
-          : "Healthy",
+      status: maxTemp > 100 || maxVibration > 2 ? "Warning" : "Healthy",
       remarks:
         maxTemp > 100 || maxVibration > 2
           ? "High electrical stress detected"
-          : "Operating normally",
+          : "Operating normally"
     },
-
     {
       name: "IGBT Module",
-      status:
-        maxTemp > 90 || maxVibration > 1.5
-          ? "Warning"
-          : "Healthy",
+      status: maxTemp > 90 || maxVibration > 1.5 ? "Warning" : "Healthy",
       remarks:
         maxTemp > 90 || maxVibration > 1.5
           ? "Thermal stress observed"
-          : "Operating normally",
+          : "Operating normally"
     },
-
     {
       name: "Power Block",
-      status:
-        maxVibration > 2
-          ? "Warning"
-          : "Healthy",
+      status: maxVibration > 2 ? "Warning" : "Healthy",
       remarks:
         maxVibration > 2
           ? "Power fluctuations detected"
-          : "Operating normally",
+          : "Operating normally"
     },
-
     {
       name: "Rectifier Unit",
-      status:
-        maxTemp > 110
-          ? "Warning"
-          : "Healthy",
-      remarks:
-        maxTemp > 110
-          ? "Rectification overload"
-          : "Operating normally",
+      status: maxTemp > 110 ? "Warning" : "Healthy",
+      remarks: maxTemp > 110 ? "Rectification overload" : "Operating normally"
     },
-
     {
       name: "Cooling System",
-      status:
-        maxTemp > 80 || maxVibration > 1.5
-          ? "Warning"
-          : "Healthy",
+      status: maxTemp > 80 || maxVibration > 1.5 ? "Warning" : "Healthy",
       remarks:
         maxTemp > 80 || maxVibration > 1.5
           ? "Cooling load increased"
-          : "Operating normally",
+          : "Operating normally"
     },
-
     {
       name: "Motor Drive Controller",
-      status:
-        maxTemp > 95 || maxVibration > 1.5
-          ? "Warning"
-          : "Healthy",
+      status: maxTemp > 95 || maxVibration > 1.5 ? "Warning" : "Healthy",
       remarks:
         maxTemp > 95 || maxVibration > 1.5
           ? "Control system under stress"
-          : "Operating normally",
-    },
+          : "Operating normally"
+    }
   ];
 
   const healthyCount = components.filter(
@@ -113,239 +80,94 @@ function Components() {
   ).length;
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
       {/* Header */}
-      <div
-        style={{
-          background:
-            "linear-gradient(135deg,#0f172a,#1e3a8a)",
-          color: "white",
-          padding: "25px",
-          borderRadius: "15px",
-          marginBottom: "25px",
-          boxShadow:
-            "0 4px 12px rgba(0,0,0,0.15)",
-        }}
-      >
+      <div className="dash-hero">
         <h1>ERS Component Monitoring</h1>
         <p>Electrical Component Health Status</p>
       </div>
 
       {/* Summary Cards */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fit,minmax(250px,1fr))",
-          gap: "20px",
-          marginBottom: "25px",
-        }}
-      >
-        <div
-          style={{
-            background: "white",
-            padding: "25px",
-            borderRadius: "12px",
-            boxShadow:
-              "0 4px 10px rgba(0,0,0,0.08)",
-            textAlign: "center",
-          }}
-        >
-          <h3>Total Components</h3>
-          <h1>{components.length}</h1>
+      <div className="kpi-grid">
+        <div className="kpi-card">
+          <div className="kpi-label">Total Components</div>
+          <div className="kpi-value neutral">{components.length}</div>
         </div>
 
-        <div
-          style={{
-            background: "white",
-            padding: "25px",
-            borderRadius: "12px",
-            boxShadow:
-              "0 4px 10px rgba(0,0,0,0.08)",
-            textAlign: "center",
-          }}
-        >
-          <h3 style={{ color: "green" }}>
-            Healthy
-          </h3>
-          <h1 style={{ color: "green" }}>
-            {healthyCount}
-          </h1>
+        <div className="kpi-card">
+          <div className="kpi-label">Healthy</div>
+          <div className="kpi-value healthy">{healthyCount}</div>
         </div>
 
-        <div
-          style={{
-            background: "white",
-            padding: "25px",
-            borderRadius: "12px",
-            boxShadow:
-              "0 4px 10px rgba(0,0,0,0.08)",
-            textAlign: "center",
-          }}
-        >
-          <h3 style={{ color: "orange" }}>
-            Warning
-          </h3>
-          <h1 style={{ color: "orange" }}>
-            {warningCount}
-          </h1>
+        <div className="kpi-card">
+          <div className="kpi-label">Warning</div>
+          <div className="kpi-value warning">{warningCount}</div>
         </div>
       </div>
 
       {/* Components Table */}
-      <div
-        style={{
-          background: "white",
-          borderRadius: "12px",
-          overflow: "hidden",
-          boxShadow:
-            "0 4px 10px rgba(0,0,0,0.08)",
-        }}
-      >
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            tableLayout: "fixed",
-          }}
-        >
-          <thead>
-            <tr
-              style={{
-                background: "#0f172a",
-                color: "white",
-              }}
-            >
-              <th
-                style={{
-                  padding: "15px",
-                  width: "35%",
-                  textAlign: "center",
-                }}
-              >
-                Component
-              </th>
+      <div className="panel">
+        <div className="panel-header">
+          <div>
+            <h2 className="panel-title">Component Status</h2>
+            <div className="panel-subtitle">
+              Derived from peak temperature and vibration readings
+            </div>
+          </div>
+        </div>
 
-              <th
-                style={{
-                  padding: "15px",
-                  width: "20%",
-                  textAlign: "center",
-                }}
-              >
-                Status
-              </th>
+        <div className="table-wrap">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                <th>Action</th>
+              </tr>
+            </thead>
 
-              <th
-  style={{
-    padding: "15px",
-    width: "30%",
-    textAlign: "center",
-  }}
->
-  Remarks
-</th>
+            <tbody>
+              {components.map((component, index) => (
+                <tr key={index}>
+                  <td style={{ fontWeight: 500 }}>{component.name}</td>
 
-<th
-  style={{
-    padding: "15px",
-    width: "15%",
-    textAlign: "center",
-  }}
->
-  Action
-</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {components.map(
-              (component, index) => (
-                <tr
-                  key={index}
-                  style={{
-                    borderBottom:
-                      "1px solid #e5e7eb",
-                  }}
-                >
-                  <td
-                    style={{
-                      padding: "15px",
-                      textAlign: "left",
-                      fontWeight: "500",
-                    }}
-                  >
-                    {component.name}
+                  <td>
+                    <span
+                      className={`status-pill ${
+                        component.status === "Healthy" ? "healthy" : "warning"
+                      }`}
+                    >
+                      {component.status === "Healthy" ? (
+                        <FaCheckCircle />
+                      ) : (
+                        <FaExclamationTriangle />
+                      )}
+                      {component.status}
+                    </span>
                   </td>
 
-                  <td
-                    style={{
-                      padding: "15px",
-                      textAlign: "center",
-                      color:
-                        component.status ===
-                        "Healthy"
-                          ? "green"
-                          : "orange",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {component.status}
+                  <td style={{ color: "var(--text-secondary)" }}>
+                    {component.remarks}
                   </td>
 
-                  <td
-  style={{
-    padding: "15px",
-    textAlign: "center",
-    color: "#374151",
-  }}
->
-  {component.remarks}
-</td>
-
-<td
-  style={{
-    padding: "15px",
-    textAlign: "center",
-  }}
->
-  <button
-    onClick={() =>
-      navigate(
-        `/component/${encodeURIComponent(
-          component.name
-        )}`
-      )
-    }
-    style={{
-      background: "#2563eb",
-      color: "white",
-      border: "none",
-      padding: "8px 14px",
-      borderRadius: "6px",
-      cursor: "pointer",
-      fontWeight: "bold",
-    }}
-  >
-    View Details
-  </button>
-</td>
+                  <td>
+                    <button
+                      className="btn-table-action"
+                      onClick={() =>
+                        navigate(
+                          `/component/${encodeURIComponent(component.name)}`
+                        )
+                      }
+                    >
+                      View Details
+                    </button>
+                  </td>
                 </tr>
-              )
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Footer */}
-      <div
-        style={{
-          textAlign: "center",
-          marginTop: "20px",
-          color: "#6b7280",
-          fontSize: "14px",
-        }}
-      >
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

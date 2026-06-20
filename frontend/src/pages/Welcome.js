@@ -5,63 +5,23 @@ function Welcome() {
   const navigate = useNavigate();
 
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        background: "linear-gradient(135deg, #0f172a, #2563eb)",
-        color: "white",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
-      <h1
-        style={{
-          fontSize: "3.5rem",
-          marginBottom: "10px",
-          fontWeight: "bold",
-        }}
-      >
-        WELCOME EVERYONE
-      </h1>
+    <div className="welcome-screen">
+      <div className="welcome-glow" />
 
-      <h2
-        style={{
-          marginBottom: "10px",
-          fontSize: "2rem",
-        }}
-      >
-        TO
-      </h2>
+      <span className="welcome-eyebrow">Electric Rope Shovel Health Monitoring</span>
 
-      <h1
-        style={{
-          fontSize: "3rem",
-          marginBottom: "40px",
-          fontWeight: "bold",
-        }}
-      >
-        ERS MONITORING SYSTEM
-      </h1>
+      <h1 className="welcome-title">Welcome to the</h1>
+      <h1 className="welcome-title welcome-title-accent">ERS Monitoring System</h1>
 
-      <button
-        onClick={() => navigate("/upload")}
-        style={{
-          padding: "15px 40px",
-          fontSize: "20px",
-          fontWeight: "bold",
-          border: "none",
-          borderRadius: "10px",
-          cursor: "pointer",
-          backgroundColor: "#f59e0b",
-          color: "white",
-        }}
-      >
-        START
+      <p className="welcome-subtitle">
+        Real-time equipment health tracking &amp; predictive maintenance
+      </p>
+
+      <button className="welcome-cta" onClick={() => navigate("/dashboard")}>
+        Enter Dashboard
       </button>
+
+      <div className="welcome-footer">IIT Kharagpur &middot; Department of Electrical Engineering</div>
     </div>
   );
 }

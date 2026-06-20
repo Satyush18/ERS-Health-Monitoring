@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 
 function Motors() {
   const [data, setData] = useState([]);
@@ -10,271 +11,160 @@ function Motors() {
       .catch((err) => console.log(err));
   }, []);
 
-  const driveData = data.filter((item) =>
-  item.Motor?.toLowerCase().includes("crowd") ||
-  item.Motor?.toLowerCase().includes("swing") ||
-  item.Motor?.toLowerCase().includes("hoist") ||
-  item.Motor?.toLowerCase().includes("propel")
-);
+  const driveData = data.filter(
+    (item) =>
+      item.Motor?.toLowerCase().includes("crowd") ||
+      item.Motor?.toLowerCase().includes("swing") ||
+      item.Motor?.toLowerCase().includes("hoist") ||
+      item.Motor?.toLowerCase().includes("propel")
+  );
 
-const auxiliaryData = data.filter(
-  (item) =>
-    !item.Motor?.toLowerCase().includes("crowd") &&
-    !item.Motor?.toLowerCase().includes("swing") &&
-    !item.Motor?.toLowerCase().includes("hoist") &&
-    !item.Motor?.toLowerCase().includes("propel")
-);
+  const auxiliaryData = data.filter(
+    (item) =>
+      !item.Motor?.toLowerCase().includes("crowd") &&
+      !item.Motor?.toLowerCase().includes("swing") &&
+      !item.Motor?.toLowerCase().includes("hoist") &&
+      !item.Motor?.toLowerCase().includes("propel")
+  );
 
-function getStatus(item) {
-  if (item.Temperature > 100 || item.Vibration > 2) {
-    return "Critical";
+  function getStatus(item) {
+    if (item.Temperature > 100 || item.Vibration > 2) {
+      return "Critical";
+    }
+    return "Healthy";
   }
-  return "Healthy";
-}
+
+  const totalMotors = data.length;
+
+  const criticalMotors = data.filter(
+    (item) => item.Temperature > 100 || item.Vibration > 2
+  ).length;
+
+  const healthyMotors = data.filter(
+    (item) => item.Temperature <= 100 && item.Vibration <= 2
+  ).length;
+
+  const renderRows = (rows) =>
+    rows.map((item, index) => {
+      const status = getStatus(item);
+      return (
+        <tr key={index}>
+          <td>{item.Motor}</td>
+          <td className="mono">{item.Temperature}</td>
+          <td className="mono">{item.Vibration}</td>
+          <td>
+            <span
+              className={`status-pill ${
+                status === "Critical" ? "critical" : "healthy"
+              }`}
+            >
+              {status === "Critical" ? (
+                <FaExclamationTriangle />
+              ) : (
+                <FaCheckCircle />
+              )}
+              {status}
+            </span>
+          </td>
+        </tr>
+      );
+    });
 
   return (
     <div>
       {/* Header */}
-      <div
-        style={{
-          background: "#0f172a",
-          color: "white",
-          padding: "20px",
-          borderRadius: "12px",
-          marginBottom: "25px",
-        }}
-      >
+      <div className="dash-hero">
         <h1>Motor Health Status</h1>
         <p>Real-Time Motor Monitoring Dashboard</p>
       </div>
-      <h2
-  style={{
-    color: "#1e40af",
-    marginBottom: "15px",
-    fontWeight: "bold",
-  }}
->
-  Drive Motors
-</h2>
-
-<div
-  style={{
-    background: "white",
-    padding: "20px",
-    borderRadius: "12px",
-    boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
-  }}
-></div>
-
-      {/* Table */}
-      <div
-        style={{
-          background: "white",
-          padding: "20px",
-          borderRadius: "12px",
-          boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
-        }}
-      >
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-          }}
-        >
-          <thead>
-            <tr
-              style={{
-                background: "#0f172a",
-                color: "white",
-              }}
-            >
-              <th style={{ padding: "12px" }}>Motor</th>
-              <th style={{ padding: "12px" }}>Temperature (°C)</th>
-              <th style={{ padding: "12px" }}>Vibration</th>
-              <th style={{ padding: "12px" }}>Status</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {driveData.map((item, index) => {
-              const status =
-                item.Temperature > 100 || item.Vibration > 2
-                  ? "Critical"
-                  : "Healthy";
-
-              return (
-                <tr
-                  key={index}
-                  style={{
-                    textAlign: "center",
-                    borderBottom: "1px solid #ddd",
-                  }}
-                >
-                  <td style={{ padding: "12px" }}>
-                    {item.Motor}
-                  </td>
-
-                  <td style={{ padding: "12px" }}>
-                    {item.Temperature}
-                  </td>
-
-                  <td style={{ padding: "12px" }}>
-                    {item.Vibration}
-                  </td>
-
-                  <td
-                    style={{
-                      padding: "12px",
-                      fontWeight: "bold",
-                      color:
-                        status === "Critical"
-                          ? "red"
-                          : "green",
-                    }}
-                  >
-                    {status === "Critical"
-                      ? "🔴 Critical"
-                      : "🟢 Healthy"}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-
-      <h2
-  style={{
-    color: "#374151",
-    marginTop: "25px",
-    marginBottom: "15px",
-    fontWeight: "bold",
-  }}
->
-  Auxiliary Motors
-</h2>
-<div
-  style={{
-    background: "white",
-    padding: "20px",
-    borderRadius: "12px",
-    boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
-  }}
->
- <table
-  style={{
-    width: "100%",
-    borderCollapse: "collapse",
-  }}
->
-  <thead>
-    <tr
-      style={{
-        background: "#374151",
-        color: "white",
-      }}
-    >
-      <th style={{ padding: "12px" }}>Motor</th>
-      <th style={{ padding: "12px" }}>Temperature (°C)</th>
-      <th style={{ padding: "12px" }}>Vibration</th>
-      <th style={{ padding: "12px" }}>Status</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    {auxiliaryData.map((item, index) => {
-      const status = getStatus(item);
-
-      return (
-        <tr
-          key={index}
-          style={{
-            textAlign: "center",
-            borderBottom: "1px solid #ddd",
-          }}
-        >
-          <td style={{ padding: "12px" }}>
-            {item.Motor}
-          </td>
-
-          <td style={{ padding: "12px" }}>
-            {item.Temperature}
-          </td>
-
-          <td style={{ padding: "12px" }}>
-            {item.Vibration}
-          </td>
-
-          <td
-            style={{
-              padding: "12px",
-              fontWeight: "bold",
-              color:
-                status === "Critical"
-                  ? "red"
-                  : status === "Warning"
-                  ? "orange"
-                  : "green",
-            }}
-          >
-            {status === "Critical"
-              ? "🔴 Critical"
-              : status === "Warning"
-              ? "🟠 Warning"
-              : "🟢 Healthy"}
-          </td>
-        </tr>
-      );
-    })}
-  </tbody>
-</table>
-</div>
 
       {/* Summary */}
-      <div
-        style={{
-          marginTop: "25px",
-          background: "white",
-          padding: "20px",
-          borderRadius: "12px",
-          boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
-        }}
-      >
-        <h2>Motor Summary</h2>
+      <div className="kpi-grid">
+        <div className="kpi-card">
+          <div className="kpi-label">Total Motors Monitored</div>
+          <div className="kpi-value neutral">{totalMotors}</div>
+        </div>
 
-        <p>
-          Total Motors Monitored: <b>{data.length}</b>
-        </p>
+        <div className="kpi-card">
+          <div className="kpi-label">Healthy Motors</div>
+          <div className="kpi-value healthy">{healthyMotors}</div>
+        </div>
 
-        <p>
-          Critical Motors:{" "}
-          <b style={{ color: "red" }}>
-            {
-              data.filter(
-                (item) =>
-                  item.Temperature > 100 ||
-                  item.Vibration > 2
-              ).length
-            }
-          </b>
-        </p>
-
-        <p>
-          Healthy Motors:{" "}
-          <b style={{ color: "green" }}>
-            {
-              data.filter(
-                (item) =>
-                  item.Temperature <= 100 &&
-                  item.Vibration <= 2
-              ).length
-            }
-          </b>
-        </p>
+        <div className="kpi-card">
+          <div className="kpi-label">Critical Motors</div>
+          <div className="kpi-value critical">{criticalMotors}</div>
+        </div>
       </div>
 
-      {/* Footer */}
-      
+      {/* Drive Motors */}
+      <div className="panel">
+        <div className="panel-header">
+          <div>
+            <h2 className="panel-title">Drive Motors</h2>
+            <div className="panel-subtitle">
+              Crowd, swing, hoist &amp; propel motors
+            </div>
+          </div>
+        </div>
+
+        <div className="table-wrap">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Motor</th>
+                <th>Temperature (&deg;C)</th>
+                <th>Vibration</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {driveData.length === 0 ? (
+                <tr>
+                  <td colSpan={4}>
+                    <div className="empty-state">No drive motor data available.</div>
+                  </td>
+                </tr>
+              ) : (
+                renderRows(driveData)
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Auxiliary Motors */}
+      <div className="panel">
+        <div className="panel-header">
+          <div>
+            <h2 className="panel-title">Auxiliary Motors</h2>
+            <div className="panel-subtitle">All other monitored motors</div>
+          </div>
+        </div>
+
+        <div className="table-wrap">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Motor</th>
+                <th>Temperature (&deg;C)</th>
+                <th>Vibration</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {auxiliaryData.length === 0 ? (
+                <tr>
+                  <td colSpan={4}>
+                    <div className="empty-state">No auxiliary motor data available.</div>
+                  </td>
+                </tr>
+              ) : (
+                renderRows(auxiliaryData)
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }

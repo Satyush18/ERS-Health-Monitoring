@@ -21,58 +21,45 @@ function Analytics() {
 
   return (
     <div>
-      <div
-        style={{
-          background: "#0f172a",
-          color: "white",
-          padding: "20px",
-          borderRadius: "12px",
-          marginBottom: "25px"
-        }}
-      >
+      <div className="dash-hero">
         <h1>Analytics Dashboard</h1>
         <p>Motor Performance Analysis</p>
       </div>
 
-      <div
-        style={{
-          background: "white",
-          padding: "20px",
-          borderRadius: "12px",
-          marginBottom: "25px",
-          boxShadow: "0px 4px 10px rgba(0,0,0,0.1)"
-        }}
-      >
-        <h2>Temperature Analysis</h2>
+      <div className="panel">
+        <div className="panel-header">
+          <div>
+            <h2 className="panel-title">Temperature Analysis</h2>
+            <div className="panel-subtitle">Per-motor temperature readings (&deg;C)</div>
+          </div>
+        </div>
 
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="Motor" />
-            <YAxis />
+            <CartesianGrid strokeDasharray="3 3" stroke="#e6e9f2" />
+            <XAxis dataKey="Motor" tick={{ fontSize: 12, fill: "#5b6478" }} />
+            <YAxis tick={{ fontSize: 12, fill: "#5b6478" }} />
             <Tooltip />
-            <Bar dataKey="Temperature" fill="#ef4444" />
+            <Bar dataKey="Temperature" fill="#dc2626" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
-      <div
-        style={{
-          background: "white",
-          padding: "20px",
-          borderRadius: "12px",
-          boxShadow: "0px 4px 10px rgba(0,0,0,0.1)"
-        }}
-      >
-        <h2>Vibration Analysis</h2>
+      <div className="panel">
+        <div className="panel-header">
+          <div>
+            <h2 className="panel-title">Vibration Analysis</h2>
+            <div className="panel-subtitle">Per-motor vibration readings (mm/s)</div>
+          </div>
+        </div>
 
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="Motor" />
-            <YAxis />
+            <CartesianGrid strokeDasharray="3 3" stroke="#e6e9f2" />
+            <XAxis dataKey="Motor" tick={{ fontSize: 12, fill: "#5b6478" }} />
+            <YAxis tick={{ fontSize: 12, fill: "#5b6478" }} />
             <Tooltip />
-            <Bar dataKey="Vibration" fill="#2563eb" />
+            <Bar dataKey="Vibration" fill="#1d4ed8" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

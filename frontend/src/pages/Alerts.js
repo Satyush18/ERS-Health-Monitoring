@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaExclamationTriangle, FaCheckCircle, FaThermometerFull, FaWaveSquare } from "react-icons/fa";
 
 function Alerts() {
   const [alerts, setAlerts] = useState([]);
@@ -34,53 +35,51 @@ function Alerts() {
 
   return (
     <div>
-      <div
-        style={{
-          background: "#0f172a",
-          color: "white",
-          padding: "20px",
-          borderRadius: "12px",
-          marginBottom: "25px"
-        }}
-      >
+      <div className="dash-hero">
         <h1>Alerts Dashboard</h1>
-        <p>Fault Detection & Warning System</p>
+        <p>Fault Detection &amp; Warning System</p>
       </div>
 
       {alerts.length > 0 ? (
-        alerts.map((alert, index) => (
-          <div
-            key={index}
-            style={{
-              background: "#fee2e2",
-              border: "1px solid red",
-              padding: "20px",
-              marginBottom: "15px",
-              borderRadius: "12px"
-            }}
-          >
-            <h3>🚨 {alert.type} Alert</h3>
+        <div className="alert-list">
+          {alerts.map((alert, index) => (
+            <div key={index} className="alert-card">
+              <div className="alert-card-icon">
+                {alert.type === "Temperature" ? (
+                  <FaThermometerFull />
+                ) : (
+                  <FaWaveSquare />
+                )}
+              </div>
 
-            <p>
-              <strong>Motor:</strong> {alert.motor}
-            </p>
-
-            <p>
-              <strong>Value:</strong> {alert.value}
-            </p>
-          </div>
-        ))
+              <div className="alert-card-body">
+                <div className="alert-card-title">
+                  <FaExclamationTriangle />
+                  {alert.type} Alert
+                </div>
+                <div className="alert-card-detail">
+                  <span>
+                    <strong>Motor:</strong> {alert.motor}
+                  </span>
+                  <span>
+                    <strong>Value:</strong> {alert.value}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
-        <div
-          style={{
-            background: "#dcfce7",
-            padding: "20px",
-            borderRadius: "12px"
-          }}
-        >
-          <h2 style={{ color: "green" }}>
-            ✅ No Active Alerts
+        <div className="panel no-alerts-panel">
+          <div className="status-icon healthy" style={{ margin: "0 auto 14px" }}>
+            <FaCheckCircle />
+          </div>
+          <h2 className="status-text-main healthy" style={{ textAlign: "center" }}>
+            No Active Alerts
           </h2>
+          <p className="status-text-sub" style={{ textAlign: "center" }}>
+            All monitored equipment is within normal operating range.
+          </p>
         </div>
       )}
     </div>
