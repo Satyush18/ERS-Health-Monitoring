@@ -13,8 +13,6 @@ function ComponentDetails() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const decodedId = decodeURIComponent(id).trim();
-
   useEffect(() => {
     fetch("https://ers-health-monitoring.onrender.com/data")
       .then((res) => {
@@ -34,9 +32,15 @@ function ComponentDetails() {
       .finally(() => setLoading(false));
   }, []);
 
-  const componentData = data.filter(
-    (item) => item.Motor && item.Motor.trim() === decodedId
-  );
+  const decodedId = decodeURIComponent(id)
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+
+  const componentData = data.filter((item) => {
+    if (!item.Motor) return false;
+    return item.Motor.trim().toLowerCase().replace(/\s+/g, " ") === decodedId;
+  });
 
   const maxTemp = componentData.length > 0
     ? Math.max(...componentData.map((item) => Number(item.Temperature)))
@@ -116,12 +120,7 @@ function ComponentDetails() {
           <FaArrowLeft size={12} /> Back to Components
         </button>
         <p style={{ marginTop: "40px" }}>
-          No data found for: <strong>{decodedId}</strong>
-        </p>
-        <p style={{ fontSize: "13px", color: "#f59e0b" }}>
-          Available motors: {motorData.map(m => m.Motor).filter(
-            (v, i, a) => a.indexOf(v) === i
-          ).join(", ")}
+          No data found for: <strong>{decodeURIComponent(id)}</strong>
         </p>
       </div>
     );
@@ -134,7 +133,7 @@ function ComponentDetails() {
       </button>
 
       <div className="dash-hero">
-        <h1>{decodedId}</h1>
+        <h1>{decodeURIComponent(id)}</h1>
         <p>Detailed Component Analysis</p>
       </div>
 

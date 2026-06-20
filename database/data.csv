@@ -1,18 +1,4 @@
 Motor,Temperature,Vibration,Current
-Crowd Motor,78.5,1.1,45
-Swing Motor,82.3,1.4,52
-Hoist Motor,93.6,1.6,61
-Propel Motor,68.2,0.9,38
-Crowd Motor 2,104.8,2.3,78
-Swing Motor 2,88.1,1.6,57
-Hoist Motor 2,79.4,1.3,48
-Propel Motor 2,73.9,1.0,42
-Cooling Pump Motor,85.2,1.7,54
-Lube Oil Pump Motor,76.4,1.2,44
-Air Compressor Motor,91.5,1.9,63
-Conveyor Drive Motor,69.8,0.8,36
-Exciter Motor,86.7,1.3,55
-Auxiliary Blower Motor,72.1,1.0,40
 Transformer (CT),88.0,1.2,58
 Transformer (CT),92.5,1.4,62
 Transformer (CT),96.0,1.6,66

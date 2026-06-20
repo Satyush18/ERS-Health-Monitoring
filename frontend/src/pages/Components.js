@@ -6,6 +6,7 @@ import motorData from "../data/motorData";
 function Components() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://ers-health-monitoring.onrender.com/data")
@@ -22,38 +23,68 @@ function Components() {
       })
       .catch(() => {
         setData(motorData);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
-  const getMaxTemp = (name) => {
-    const rows = data.filter((item) => item.Motor && item.Motor.trim() === name);
+  const getMax = (name, field) => {
+    const rows = data.filter((item) => {
+      if (!item.Motor) return false;
+      return item.Motor.trim().toLowerCase().replace(/\s+/g, " ") ===
+        name.trim().toLowerCase().replace(/\s+/g, " ");
+    });
     return rows.length > 0
-      ? Math.max(...rows.map((item) => Number(item.Temperature)))
-      : 0;
-  };
-
-  const getMaxVibration = (name) => {
-    const rows = data.filter((item) => item.Motor && item.Motor.trim() === name);
-    return rows.length > 0
-      ? Math.max(...rows.map((item) => Number(item.Vibration)))
+      ? Math.max(...rows.map((item) => Number(item[field])))
       : 0;
   };
 
   const componentList = [
-    { name: "Transformer (CT)", tempThreshold: 100, vibThreshold: 2, warningMsg: "High electrical stress detected" },
-    { name: "IGBT Module", tempThreshold: 90, vibThreshold: 1.5, warningMsg: "Thermal stress observed" },
-    { name: "Power Block", tempThreshold: 999, vibThreshold: 2, warningMsg: "Power fluctuations detected" },
-    { name: "Rectifier Unit", tempThreshold: 100, vibThreshold: 999, warningMsg: "Rectification overload" },
-    { name: "Cooling System", tempThreshold: 80, vibThreshold: 1.5, warningMsg: "Cooling load increased" },
-    { name: "Motor Drive Controller", tempThreshold: 95, vibThreshold: 1.5, warningMsg: "Control system under stress" },
+    {
+      name: "Transformer (CT)",
+      tempThreshold: 100,
+      vibThreshold: 2,
+      warningMsg: "High electrical stress detected",
+    },
+    {
+      name: "IGBT Module",
+      tempThreshold: 90,
+      vibThreshold: 1.5,
+      warningMsg: "Thermal stress observed",
+    },
+    {
+      name: "Power Block",
+      tempThreshold: 999,
+      vibThreshold: 2,
+      warningMsg: "Power fluctuations detected",
+    },
+    {
+      name: "Rectifier Unit",
+      tempThreshold: 100,
+      vibThreshold: 999,
+      warningMsg: "Rectification overload",
+    },
+    {
+      name: "Cooling System",
+      tempThreshold: 80,
+      vibThreshold: 1.5,
+      warningMsg: "Cooling load increased",
+    },
+    {
+      name: "Motor Drive Controller",
+      tempThreshold: 95,
+      vibThreshold: 1.5,
+      warningMsg: "Control system under stress",
+    },
   ];
 
   const components = componentList.map((c) => {
-    const t = getMaxTemp(c.name);
-    const v = getMaxVibration(c.name);
+    const t = getMax(c.name, "Temperature");
+    const v = getMax(c.name, "Vibration");
     const isWarning = t > c.tempThreshold || v > c.vibThreshold;
     return {
       name: c.name,
+      maxTemp: t,
+      maxVib: v,
       status: isWarning ? "Warning" : "Healthy",
       remarks: isWarning ? c.warningMsg : "Operating normally",
     };
@@ -61,6 +92,14 @@ function Components() {
 
   const healthyCount = components.filter((c) => c.status === "Healthy").length;
   const warningCount = components.filter((c) => c.status === "Warning").length;
+
+  if (loading) {
+    return (
+      <div style={{ padding: "40px", textAlign: "center", color: "#5b6478" }}>
+        <p>Loading component data...</p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -98,6 +137,8 @@ function Components() {
             <thead>
               <tr>
                 <th>Component</th>
+                <th>Max Temp</th>
+                <th>Max Vibration</th>
                 <th>Status</th>
                 <th>Remarks</th>
                 <th>Action</th>
@@ -107,6 +148,8 @@ function Components() {
               {components.map((component, index) => (
                 <tr key={index}>
                   <td style={{ fontWeight: 500 }}>{component.name}</td>
+                  <td>{component.maxTemp}°C</td>
+                  <td>{component.maxVib} mm/s</td>
                   <td>
                     <span className={`status-pill ${component.status === "Healthy" ? "healthy" : "warning"}`}>
                       {component.status === "Healthy"
