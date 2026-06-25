@@ -11,21 +11,28 @@ function Motors() {
       .catch((err) => console.log(err));
   }, []);
 
-  const driveData = data.filter(
-    (item) =>
-      item.Motor?.toLowerCase().includes("crowd") ||
-      item.Motor?.toLowerCase().includes("swing") ||
-      item.Motor?.toLowerCase().includes("hoist") ||
-      item.Motor?.toLowerCase().includes("propel")
-  );
+  // A motor is a "Drive Motor" only if it's crowd/swing/hoist/propel
+  // AND it isn't actually an auxiliary blower or lubrication motor for that
+  // mechanism (e.g. "Crowd Blower Motor" or "Hoist Gear Oil Pump" are
+  // auxiliary equipment, not the drive motor itself).
+  const isAuxiliaryKeyword = (name) =>
+    name.toLowerCase().includes("blower") ||
+    name.toLowerCase().includes("oil pump") ||
+    name.toLowerCase().includes("lubrication");
 
-  const auxiliaryData = data.filter(
-    (item) =>
-      !item.Motor?.toLowerCase().includes("crowd") &&
-      !item.Motor?.toLowerCase().includes("swing") &&
-      !item.Motor?.toLowerCase().includes("hoist") &&
-      !item.Motor?.toLowerCase().includes("propel")
-  );
+  const isDriveMotor = (name) => {
+    const lower = name?.toLowerCase() || "";
+    const matchesDriveKeyword =
+      lower.includes("crowd") ||
+      lower.includes("swing") ||
+      lower.includes("hoist") ||
+      lower.includes("propel");
+    return matchesDriveKeyword && !isAuxiliaryKeyword(lower);
+  };
+
+  const driveData = data.filter((item) => item.Motor && isDriveMotor(item.Motor));
+
+  const auxiliaryData = data.filter((item) => item.Motor && !isDriveMotor(item.Motor));
 
   function getStatus(item) {
     if (item.Temperature > 100 || item.Vibration > 2) {

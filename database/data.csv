@@ -1,25 +1,205 @@
 Motor,Temperature,Vibration,Current
 Transformer (CT),88.0,1.2,58
-Transformer (CT),92.5,1.4,62
-Transformer (CT),96.0,1.6,66
-Transformer (CT),101.5,1.8,72
+Transformer (CT),90.7,1.35,58.9
+Transformer (CT),87.9,1.63,65.7
+Transformer (CT),96.9,1.52,65.8
+Transformer (CT),99.1,1.65,65.5
+Transformer (CT),105.5,1.92,73.7
 IGBT Module,75.0,1.0,43
-IGBT Module,80.0,1.2,50
-IGBT Module,86.0,1.3,56
-IGBT Module,91.5,1.4,62
+IGBT Module,77.9,1.12,42.7
+IGBT Module,77.8,1.1,45.4
+IGBT Module,80.5,1.43,47.2
+IGBT Module,87.0,1.77,49.5
+IGBT Module,92.3,1.64,51.9
 Power Block,70.0,1.1,39
-Power Block,74.5,1.5,46
-Power Block,79.0,1.9,52
-Power Block,83.5,2.2,58
+Power Block,67.2,1.12,40.8
+Power Block,73.8,1.23,48.3
+Power Block,74.3,1.43,47.1
+Power Block,77.0,1.39,50.2
+Power Block,84.5,1.6,52.6
 Rectifier Unit,95.0,1.3,65
-Rectifier Unit,99.0,1.4,69
-Rectifier Unit,103.0,1.5,74
-Rectifier Unit,107.0,1.6,79
+Rectifier Unit,92.2,1.46,68.9
+Rectifier Unit,99.6,1.42,69.3
+Rectifier Unit,99.9,1.44,80.3
+Rectifier Unit,101.0,1.5,83.3
+Rectifier Unit,106.8,1.59,81.8
 Cooling System,65.0,0.9,33
-Cooling System,72.0,1.2,40
-Cooling System,78.5,1.4,47
-Cooling System,84.0,1.6,53
+Cooling System,67.3,0.87,34.9
+Cooling System,77.1,1.23,34.2
+Cooling System,78.5,1.53,40.9
+Cooling System,75.8,1.39,44.6
+Cooling System,83.6,2.0,43.6
 Motor Drive Controller,80.0,1.1,50
-Motor Drive Controller,86.0,1.3,56
-Motor Drive Controller,92.0,1.5,63
-Motor Drive Controller,97.5,1.7,69
+Motor Drive Controller,86.4,1.21,50.6
+Motor Drive Controller,81.9,1.22,52.5
+Motor Drive Controller,91.9,1.46,60.0
+Motor Drive Controller,93.2,1.33,62.6
+Motor Drive Controller,94.0,1.57,62.5
+CT,82.0,0.35,58
+CT,86.1,0.55,57.9
+CT,86.5,0.47,65.6
+CT,90.5,0.85,65.1
+CT,87.8,0.96,70.5
+CT,99.9,1.21,67.2
+IGBT,77.0,0.4,44
+IGBT,75.5,0.46,45.3
+IGBT,80.9,0.68,51.6
+IGBT,84.2,0.84,49.9
+IGBT,85.4,0.67,57.2
+IGBT,90.3,0.94,62.1
+Breaker,58.0,1.1,28
+Breaker,60.5,1.14,31.1
+Breaker,59.3,0.97,28.9
+Breaker,63.2,1.68,39.4
+Breaker,62.6,1.78,43.6
+Breaker,64.8,2.2,45.4
+Contactor,56.0,0.85,26
+Contactor,56.1,1.05,31.9
+Contactor,60.0,1.13,28.8
+Contactor,62.0,1.06,29.1
+Contactor,61.8,1.23,35.0
+Contactor,65.6,1.43,36.3
+Voltage Relay,49.0,0.18,12
+Voltage Relay,46.2,0.42,13.9
+Voltage Relay,52.6,0.34,17.5
+Voltage Relay,54.7,0.64,15.3
+Voltage Relay,60.4,0.62,18.8
+Voltage Relay,60.4,0.74,24.4
+Current relay,48.0,0.16,11
+Current relay,50.1,0.29,16.4
+Current relay,55.1,0.38,20.8
+Current relay,53.4,0.48,23.3
+Current relay,54.6,0.31,21.1
+Current relay,58.6,1.04,25.5
+Air Compressor Motor,72.0,1.18,46
+Air Compressor Motor,72.3,1.36,49.6
+Air Compressor Motor,80.7,1.2,53.5
+Air Compressor Motor,85.6,1.54,51.3
+Air Compressor Motor,81.6,1.56,59.5
+Air Compressor Motor,90.0,1.88,62.8
+"1# Blower, Electric Room",58.0,0.74,24
+"1# Blower, Electric Room",60.1,0.97,25.2
+"1# Blower, Electric Room",62.7,0.81,23.0
+"1# Blower, Electric Room",63.1,1.18,29.0
+"1# Blower, Electric Room",60.4,1.21,32.7
+"1# Blower, Electric Room",68.2,1.48,33.8
+"2# Blower, Electric Room",57.0,0.69,23
+"2# Blower, Electric Room",59.8,0.7,28.0
+"2# Blower, Electric Room",67.3,1.13,25.9
+"2# Blower, Electric Room",70.1,1.16,28.9
+"2# Blower, Electric Room",70.0,1.38,34.4
+"2# Blower, Electric Room",72.1,1.36,35.5
+"3# Blower, Electric Room",59.0,0.77,25
+"3# Blower, Electric Room",61.5,0.74,22.8
+"3# Blower, Electric Room",63.6,0.87,28.4
+"3# Blower, Electric Room",64.4,1.05,28.9
+"3# Blower, Electric Room",61.7,1.03,31.8
+"3# Blower, Electric Room",68.9,1.27,36.1
+"4# Blower, Electric Room",58.5,0.71,24
+"4# Blower, Electric Room",59.7,0.75,31.5
+"4# Blower, Electric Room",64.1,0.79,29.5
+"4# Blower, Electric Room",62.3,0.99,32.8
+"4# Blower, Electric Room",68.6,1.09,40.0
+"4# Blower, Electric Room",70.9,1.08,37.9
+Front Hoist Blower Motor,63.5,0.83,31
+Front Hoist Blower Motor,63.9,0.66,30.4
+Front Hoist Blower Motor,69.9,1.11,38.2
+Front Hoist Blower Motor,67.1,1.19,35.1
+Front Hoist Blower Motor,72.5,1.2,43.2
+Front Hoist Blower Motor,80.4,1.38,46.3
+Rear Hoist Blower Motor,62.8,0.79,30
+Rear Hoist Blower Motor,64.0,0.89,34.2
+Rear Hoist Blower Motor,65.3,0.97,35.1
+Rear Hoist Blower Motor,70.1,0.91,34.8
+Rear Hoist Blower Motor,67.4,1.04,36.8
+Rear Hoist Blower Motor,81.8,1.11,39.4
+Crowd Blower Motor,61.7,0.81,29
+Crowd Blower Motor,66.5,0.8,34.1
+Crowd Blower Motor,64.1,0.94,32.3
+Crowd Blower Motor,67.1,0.98,43.6
+Crowd Blower Motor,68.9,1.06,39.6
+Crowd Blower Motor,69.9,1.2,49.6
+Front Swing Blower Motor,60.9,0.76,28
+Front Swing Blower Motor,67.1,0.99,29.0
+Front Swing Blower Motor,63.0,0.9,30.2
+Front Swing Blower Motor,68.1,1.18,28.0
+Front Swing Blower Motor,79.4,1.39,35.1
+Front Swing Blower Motor,82.7,1.5,36.2
+Rear Swing Blower Motor,60.1,0.73,27
+Rear Swing Blower Motor,61.2,0.92,28.9
+Rear Swing Blower Motor,68.1,0.76,29.1
+Rear Swing Blower Motor,66.8,1.24,31.3
+Rear Swing Blower Motor,69.2,1.32,29.1
+Rear Swing Blower Motor,73.6,1.45,33.2
+Right Propel Blower Motor,64.8,0.88,32
+Right Propel Blower Motor,64.1,1.03,34.3
+Right Propel Blower Motor,68.7,0.87,32.1
+Right Propel Blower Motor,69.3,1.25,36.6
+Right Propel Blower Motor,69.6,1.4,39.0
+Right Propel Blower Motor,72.5,1.45,47.3
+Left Propel Blower Motor,64.1,0.85,31
+Left Propel Blower Motor,61.3,0.82,28.8
+Left Propel Blower Motor,70.5,1.2,33.4
+Left Propel Blower Motor,72.8,1.18,33.8
+Left Propel Blower Motor,73.1,1.26,37.5
+Left Propel Blower Motor,77.6,1.37,38.0
+Hoist Gear Oil Pump (Lubrication),54.3,0.42,18
+Hoist Gear Oil Pump (Lubrication),53.3,0.74,19.3
+Hoist Gear Oil Pump (Lubrication),63.2,0.5,20.6
+Hoist Gear Oil Pump (Lubrication),63.6,0.89,18.4
+Hoist Gear Oil Pump (Lubrication),65.8,1.26,27.7
+Hoist Gear Oil Pump (Lubrication),70.9,1.31,28.6
+Front Swing Gear Oil Pump (Lubrication),53.7,0.39,17
+Front Swing Gear Oil Pump (Lubrication),55.9,0.23,19.6
+Front Swing Gear Oil Pump (Lubrication),57.6,0.66,21.2
+Front Swing Gear Oil Pump (Lubrication),62.2,0.67,22.2
+Front Swing Gear Oil Pump (Lubrication),60.7,0.99,26.3
+Front Swing Gear Oil Pump (Lubrication),67.1,1.19,25.6
+Rear Swing Gear Oil Pump (Lubrication),53.1,0.37,16
+Rear Swing Gear Oil Pump (Lubrication),56.6,0.39,19.0
+Rear Swing Gear Oil Pump (Lubrication),58.5,0.68,18.9
+Rear Swing Gear Oil Pump (Lubrication),59.7,0.59,20.3
+Rear Swing Gear Oil Pump (Lubrication),56.9,0.93,26.4
+Rear Swing Gear Oil Pump (Lubrication),68.2,0.98,25.0
+Motor Winch (electric winch),75.0,1.34,55
+Motor Winch (electric winch),73.6,1.39,57.1
+Motor Winch (electric winch),85.8,1.48,56.5
+Motor Winch (electric winch),86.4,1.6,62.7
+Motor Winch (electric winch),93.6,1.52,65.6
+Motor Winch (electric winch),98.2,1.59,69.7
+Dipper Trip Motor (开斗电机),68.0,1.21,44
+Dipper Trip Motor (开斗电机),69.2,1.49,42.1
+Dipper Trip Motor (开斗电机),77.5,1.67,49.2
+Dipper Trip Motor (开斗电机),77.4,1.66,50.9
+Dipper Trip Motor (开斗电机),76.3,1.85,57.2
+Dipper Trip Motor (开斗电机),81.1,1.86,60.8
+1# Dedust Blower Motor,71.5,1.46,47
+1# Dedust Blower Motor,70.9,1.77,51.1
+1# Dedust Blower Motor,74.4,1.74,49.4
+1# Dedust Blower Motor,79.7,2.02,53.9
+1# Dedust Blower Motor,79.2,2.27,53.4
+1# Dedust Blower Motor,83.6,2.14,56.1
+2# Dedust Blower Motor,70.8,1.41,46
+2# Dedust Blower Motor,75.7,1.74,46.1
+2# Dedust Blower Motor,77.9,1.6,52.0
+2# Dedust Blower Motor,82.2,1.93,57.8
+2# Dedust Blower Motor,79.2,2.01,59.7
+2# Dedust Blower Motor,83.0,2.1,56.8
+3# Dedust Blower Motor,72.1,1.49,48
+3# Dedust Blower Motor,74.9,1.59,48.0
+3# Dedust Blower Motor,82.4,1.62,45.8
+3# Dedust Blower Motor,81.2,1.65,52.3
+3# Dedust Blower Motor,89.4,1.49,54.4
+3# Dedust Blower Motor,89.5,1.88,59.6
+Screw Convey Motor (dust handling),66.7,1.28,39
+Screw Convey Motor (dust handling),64.0,1.41,40.9
+Screw Convey Motor (dust handling),73.2,1.34,50.3
+Screw Convey Motor (dust handling),77.2,1.69,48.2
+Screw Convey Motor (dust handling),77.8,1.85,52.5
+Screw Convey Motor (dust handling),82.3,1.88,52.1
+Dust Unload Motor (卸灰阀),64.2,1.09,36
+Dust Unload Motor (卸灰阀),64.9,1.2,36.4
+Dust Unload Motor (卸灰阀),69.3,1.33,40.1
+Dust Unload Motor (卸灰阀),69.4,1.32,38.1
+Dust Unload Motor (卸灰阀),73.9,1.5,43.9
+Dust Unload Motor (卸灰阀),72.3,1.56,47.7

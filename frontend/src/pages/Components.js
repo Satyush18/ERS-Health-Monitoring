@@ -26,13 +26,13 @@ function Components() {
 
   const componentList = [
     {
-      name: "Transformer (CT)",
+      name: "CT",
       tempThreshold: 100,
       vibThreshold: 2,
       warningMsg: "High electrical stress detected",
     },
     {
-      name: "IGBT Module",
+      name: "IGBT",
       tempThreshold: 90,
       vibThreshold: 1.5,
       warningMsg: "Thermal stress observed",
@@ -44,22 +44,28 @@ function Components() {
       warningMsg: "Power fluctuations detected",
     },
     {
-      name: "Rectifier Unit",
-      tempThreshold: 100,
-      vibThreshold: 999,
-      warningMsg: "Rectification overload",
-    },
-    {
-      name: "Cooling System",
+      name: "Breaker",
       tempThreshold: 80,
-      vibThreshold: 1.5,
-      warningMsg: "Cooling load increased",
+      vibThreshold: 2,
+      warningMsg: "Mechanical trip stress detected",
     },
     {
-      name: "Motor Drive Controller",
-      tempThreshold: 95,
+      name: "Contactor",
+      tempThreshold: 75,
       vibThreshold: 1.5,
-      warningMsg: "Control system under stress",
+      warningMsg: "Contact wear stress detected",
+    },
+    {
+      name: "Voltage Relay",
+      tempThreshold: 70,
+      vibThreshold: 0.5,
+      warningMsg: "Voltage instability detected",
+    },
+    {
+      name: "Current relay",
+      tempThreshold: 70,
+      vibThreshold: 0.5,
+      warningMsg: "Current instability detected",
     },
   ];
 
