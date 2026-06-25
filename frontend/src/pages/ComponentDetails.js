@@ -40,11 +40,25 @@ function ComponentDetails() {
     ? Math.max(...componentData.map((item) => Number(item.Current)))
     : 0;
 
+  // Per-component thresholds — must match the componentList in Components.jsx
+  // so the list page and the details page always agree on status.
+  const componentThresholds = {
+    "ct": { temp: 100, vib: 2 },
+    "igbt": { temp: 90, vib: 1.5 },
+    "power block": { temp: 999, vib: 2 },
+    "breaker": { temp: 80, vib: 2 },
+    "contactor": { temp: 75, vib: 1.5 },
+    "voltage relay": { temp: 70, vib: 0.5 },
+    "current relay": { temp: 70, vib: 0.5 },
+  };
+
+  const thresholds = componentThresholds[decodedId] || { temp: 100, vib: 2 };
+
   let healthScore = 100;
-  if (maxTemp > 100) healthScore -= 20;
-  else if (maxTemp > 90) healthScore -= 10;
-  if (maxVibration > 2) healthScore -= 20;
-  else if (maxVibration > 1.5) healthScore -= 10;
+  if (maxTemp > thresholds.temp) healthScore -= 20;
+  else if (maxTemp > thresholds.temp * 0.9) healthScore -= 10;
+  if (maxVibration > thresholds.vib) healthScore -= 20;
+  else if (maxVibration > thresholds.vib * 0.75) healthScore -= 10;
 
   let riskLevel = "Low";
   if (healthScore <= 90) riskLevel = "Medium";
@@ -86,8 +100,8 @@ function ComponentDetails() {
       ? "Increasing" : "Stable";
 
   let recommendations = [];
-  if (maxTemp > 100) recommendations.push("Inspect cooling system immediately.");
-  if (maxVibration > 2) recommendations.push("Check bearings and rotating parts.");
+  if (maxTemp > thresholds.temp) recommendations.push("Inspect cooling system immediately.");
+  if (maxVibration > thresholds.vib) recommendations.push("Check bearings and rotating parts.");
   if (healthScore < 75) recommendations.push("Schedule maintenance within 24 hours.");
   if (recommendations.length === 0) recommendations.push("System operating normally.");
 
